@@ -2,7 +2,6 @@ package pokeapi
 
 import (
 	"encoding/json"
-	"fmt"
 	"io"
 	"net/http"
 )
@@ -12,7 +11,7 @@ func (c *Client) CatchPokemon(pokemonName string) (RespShallowPokemon, error) {
 
 	// Check cache first
 	if cachedData, ok := c.cache.Get(url); ok {
-		fmt.Println("Cache hit!", url)
+		//fmt.Println("Cache hit!", url)
 		catchResponse := RespShallowPokemon{}
 		err := json.Unmarshal(cachedData, &catchResponse)
 		if err != nil {
@@ -20,7 +19,7 @@ func (c *Client) CatchPokemon(pokemonName string) (RespShallowPokemon, error) {
 		}
 		return catchResponse, nil
 	}
-	fmt.Println("Cache miss!", url)
+	//fmt.Println("Cache miss!", url)
 
 	// If not in cache, make the HTTP request
 	req, err := http.NewRequest("GET", url, nil)

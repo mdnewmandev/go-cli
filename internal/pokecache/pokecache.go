@@ -1,7 +1,6 @@
 package pokecache
 
 import (
-	"fmt"
 	"sync"
 	"time"
 )
@@ -34,7 +33,7 @@ func (c *Cache) Add(key string, val []byte) {
 		createdAt: time.Now(),
 		val:       val,
 	}
-	fmt.Printf("Cache entry added: %s\n", key)
+	//fmt.Printf("Cache entry added: %s\n", key)
 }
 
 func (c *Cache) Get(key string) ([]byte, bool) {
@@ -64,7 +63,7 @@ func (c *Cache) reapEntries(reapInterval time.Duration) {
 	for key, entry := range c.entries {
 		if now.Sub(entry.createdAt) > reapInterval {
 			delete(c.entries, key)
-			fmt.Printf("Cache entry expired: %s\n", key)
+			//fmt.Printf("Cache entry expired: %s\n", key)
 		}
 	}
 }
